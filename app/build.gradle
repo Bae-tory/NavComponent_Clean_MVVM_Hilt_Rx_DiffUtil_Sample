@@ -1,0 +1,38 @@
+apply plugin: 'com.android.application'
+
+apply from: '../build-common.gradle'
+
+apply from : '../build-config.gradle'
+
+android {
+    defaultConfig {
+        applicationId "$application.id"
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+}
+
+dependencies {
+    implementation project("$layers.presentation")
+    implementation project("$layers.domain")
+    implementation project("$layers.data")
+    implementation project("$layers.remote")
+    implementation project("$layers.local")
+    implementation project("$layers.coreMvvm")
+    //Android
+    implementation "$libDependencies.appcompat"
+    implementation "$libDependencies.ktx"
+    // rx
+    implementation "$libDependencies.rxjava"
+    implementation "$libDependencies.rxandroid"
+    // moshi
+    implementation "$libDependencies.moshi"
+    kapt "$libDependencies.moshiCodeGen"
+    // room
+    implementation "$libDependencies.roomRuntime"
+    implementation "$libDependencies.roomKtx"
+    implementation "$libDependencies.roomRxjava"
+    kapt "$libDependencies.roomCompiler"
+}

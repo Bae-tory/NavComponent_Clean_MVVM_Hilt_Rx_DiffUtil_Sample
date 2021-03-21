@@ -1,0 +1,158 @@
+ext {
+    application = [
+            id                                                : 'com.baetory.book',
+            archiveName                                       : 'Book'
+    ]
+    projects = [
+            buildGradle                                       : '4.1.1',
+            naviArgsGradle                                    : "2.3.0",
+    ]
+    configs = [
+            minSdk                                            : 26,
+            compileSdk                                        : 30,
+            buildSdk                                          : '30.0.2',
+            targetSdk                                         : 30,
+            versionCode                                       : 1,
+            versionName                                       : '1.0.0',
+    ]
+    versions = [
+            minSdk                                            : 26,
+            compileSdk                                        : 30,
+            targetSdk                                         : 30,
+            versionCode                                       : 1,
+            versionName                                       : '1.0.0',
+
+            gradleBuildTool                                   : '4.0.1',
+            spotlessGradle                                    : '4.5.1',
+            versionPlugin                                     : '0.28.0',
+            kotlin                                            : '1.4.31',
+            appcompat                                         : '1.1.0-alpha03',
+            ktx                                               : '1.3.2',
+            constraintlayout                                  : '1.1.3',
+            material                                          : '1.3.0-alpha02',
+            legacySupport                                     : '1.0.0',
+            gson                                              : '2.8.5',
+            moshi                                             : '1.11.0',
+            moshiConverter                                    : '2.7.2',
+
+            // architecture components
+            fragment                                          : '1.2.5',
+            lifecycle                                         : '2.2.0',
+            room                                              : '2.3.0-beta02',
+            archCompoment                                     : '2.1.0',
+            navigation                                        : '2.3.4',
+
+            // startup
+            startup                                           : '1.0.0-alpha01',
+
+            // di
+            hilt                                              : '2.33-beta',
+            hiltLifecycle                                     : '1.0.0-alpha03',
+
+            // coroutines
+            coroutines                                        : '1.3.7',
+            coroutineCore                                     : '1.3.0',
+
+            // rx
+            rxjava                                            : '3.0.6',
+            rxkotlin                                          : '3.0.1',
+            rxandroid                                         : '3.0.0',
+            rxbinding                                         : '4.0.0',
+            rxLifeCycle                                       : '4.0.2',
+            pagingruntime                                     : '3.0.0-beta01',
+            rxpaging                                          : '3.0.0-beta01',
+
+            // retrofit
+            retrofit                                          : '2.9.0',
+            okhttp                                            : '4.8.1',
+            rxjavaAdapter                                     : '2.9.0',
+
+            // glide
+            glide                                             : '4.11.0',
+            glidePalette                                      : '2.1.2',
+
+            // debugging
+            timber                                            : '4.7.1',
+
+            // util
+            whatIf                                            : '1.0.9',
+            bundler                                           : '1.0.3',
+    ]
+    testVersions =[
+            kotlin                                            : '1.4.31',
+            junit                                             : '4.13.2',
+            mockito                                           : '3.5.13',
+            mockitoKotlin                                     : '2.2.0',
+            robolectric                                       : '4.4',
+            debugdb                                           : '1.0.6'
+    ]
+    layers = [
+            coreMvvm                                          : ':core-mvvm',
+            app                                               : ':app',
+            presentation                                      : ':presentation',
+            domain                                            : ':domain',
+            data                                              : ':data',
+            local                                             : ':local',
+            remote                                            : ':remote'
+    ]
+
+    libDependencies = [
+            stdKotlin                                         : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin",
+            timber                                            : "com.jakewharton.timber:timber:$versions.timber",
+            appcompat                                         : "androidx.appcompat:appcompat:$versions.appcompat",
+            ktx                                               : "androidx.core:core-ktx:$versions.ktx",
+            constraint                                        : "androidx.constraintlayout:constraintlayout:$versions.constraintlayout",
+            material                                          : "com.google.android.material:material:$versions.material",
+            legacySupport                                     : "androidx.legacy:legacy-support-v4:$versions.legacySupport",
+            hiltAndroid                                       : "com.google.dagger:hilt-android:$versions.hilt",
+            hiltAndroidCompiler                               : "com.google.dagger:hilt-android-compiler:$versions.hilt", //kapt
+            hiltCommon                                        : "androidx.hilt:hilt-common:$versions.hiltLifecycle",
+            hiltViewmodel                                     : "androidx.hilt:hilt-lifecycle-viewmodel:$versions.hiltLifecycle",
+            hiltCompiler                                      : "androidx.hilt:hilt-compiler:$versions.hiltLifecycle", //kapt
+            fragmentKtx                                       : "androidx.fragment:fragment-ktx:$versions.fragment",
+            lifecycleExtension                                : "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle",
+            lifecycleLivedata                                 : "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle",
+            lifecycleViewmodel                                : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle",
+            lifecycleViewmodelState                           : "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.lifecycle",
+            navigationFragment                                : "androidx.navigation:navigation-fragment-ktx:$versions.navigation",
+            navigationUi                                      : "androidx.navigation:navigation-ui-ktx:$versions.navigation",
+            coroutinesCore                                    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines",
+            coroutinesAndroid                                 : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines",
+            glide                                             : "com.github.bumptech.glide:glide:$versions.glide",
+            glidePalette                                      : "com.github.florent37:glidepalette:$versions.glidePalette",
+            glideCompiler                                     : "com.github.bumptech.glide:compiler:$versions.glide", //kapt
+            startup                                           : "androidx.startup:startup-runtime:$versions.startup",
+            debugdb                                           : "com.amitshekhar.android:debug-db:$versions.debugdb",
+            rxjava                                            : "io.reactivex.rxjava3:rxjava:$versions.rxjava",
+            rxkotlin                                          : "io.reactivex.rxjava3:rxkotlin:$versions.rxkotlin",
+            rxandroid                                         : "io.reactivex.rxjava3:rxandroid:$versions.rxandroid",
+            rxbinding                                         : "com.jakewharton.rxbinding4:rxbinding:$versions.rxbinding",
+            pagingruntime                                     : "androidx.paging:paging-runtime:$versions.pagingruntime",
+            rxpagingktx                                       : "androidx.paging:paging-rxjava3:$versions.rxpaging",
+            roomRuntime                                       : "androidx.room:room-runtime:$versions.room",
+            roomKtx                                           : "androidx.room:room-ktx:$versions.room",
+            roomRxjava                                        : "androidx.room:room-rxjava3:$versions.room",
+            roomCompiler                                      : "androidx.room:room-compiler:$versions.room", //kapt
+            archCoreTest                                      : "androidx.arch.core:core-testing:$versions.archCompoment", //testImplementation
+            moshi                                             : "com.squareup.moshi:moshi-kotlin:$versions.moshi",
+            moshiCodeGen                                      : "com.squareup.moshi:moshi-kotlin-codegen:$versions.moshi",
+            whatIf                                            : "com.github.skydoves:whatif:$versions.whatIf",
+            bundler                                           : "com.github.skydoves:bundler:$versions.bundler",
+            retrofitMoshiConverter                            : "com.squareup.retrofit2:converter-moshi:$versions.moshiConverter",
+            retrofit                                          : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+            okhttp                                            : "com.squareup.okhttp3:okhttp:$versions.okhttp",
+            okhttp3logging                                    : "com.squareup.okhttp3:logging-interceptor:$versions.okhttp",
+            rxjavaAdapter                                     : "com.squareup.retrofit2:adapter-rxjava3:$versions.rxjavaAdapter",
+            gson                                              : "com.google.code.gson:gson:$versions.gson",
+            gsonConverter                                     : "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
+    ]
+    testDependencies = [
+            kotlin                                            : "org.jetbrains.kotlin:kotlin-test:$testVersions.kotlin",
+            kotlinJUnit                                       : "org.jetbrains.kotlin:kotlin-test-junit:$testVersions.kotlin",
+            junit                                             : "com.nhaarman.mockitokotlin2:mockito-kotlin:$testVersions.junit",
+            mockitoCore                                       : "org.mockito:mockito-core:$testVersions.mockito",
+            mockitoInline                                     : "org.mockito:mockito-inline:$testVersions.mockito",
+            mockitoKotlin                                     : "com.nhaarman.mockitokotlin2:mockito-kotlin:$testVersions.mockitoKotlin",
+            robolectric                                       : "org.robolectric:robolectric:$testVersions.robolectric"
+    ]
+}

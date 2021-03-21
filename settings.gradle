@@ -1,0 +1,8 @@
+include ':core-mvvm'
+include ':remote'
+include ':local'
+include ':data'
+include ':domain'
+include ':presentation'
+include ':app'
+rootProject.name = "Book"

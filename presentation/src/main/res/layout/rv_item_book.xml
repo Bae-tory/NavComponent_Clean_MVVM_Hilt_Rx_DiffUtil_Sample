@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.baetory.presentation.bindingadapter.DateUtils" />
+
+        <variable
+            name="eventHolder"
+            type="com.baetory.core_mvvm.base.BaseListClickListener" />
+
+        <variable
+            name="item"
+            type="com.baetory.presentation.model.BooksViewState" />
+
+        <variable
+            name="adapterPosition"
+            type="int" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:splitMotionEvents="true"
+        bind:onThrottleFirstClick="@{() -> eventHolder.onItemClick(adapterPosition,item)}">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_thumbnail"
+            placeHolder="@{@drawable/ic_baseline_check_24}"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="@dimen/margin20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintCircleRadius="@dimen/corner_radius8"
+            app:layout_constraintDimensionRatio="0.9:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:loadUrl="@{item.thumbnailImageUrl}"
+            tools:src="@drawable/ic_baseline_check_24"
+            tools:text="책 제목" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin20"
+            android:layout_marginTop="@dimen/margin10"
+            android:layout_marginEnd="@dimen/margin10"
+            android:fontFamily="@font/roboto_black"
+            android:includeFontPadding="false"
+            android:text="@{item.title}"
+            android:textColor="@color/brown"
+            android:textSize="@dimen/text_size12"
+            app:layout_constraintStart_toEndOf="@id/iv_thumbnail"
+            app:layout_constraintTop_toTopOf="@id/iv_thumbnail"
+            tools:text="책 제목" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin20"
+            android:layout_marginEnd="@dimen/margin20"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_black"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text="@{item.contents}"
+            android:textSize="@dimen/text_size12"
+            app:layout_constraintBottom_toTopOf="@id/tv_price"
+            app:layout_constraintEnd_toStartOf="@id/btn_favorite"
+            app:layout_constraintStart_toEndOf="@id/iv_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            app:layout_constraintVertical_bias="0.4"
+            tools:text="책 내용 요약.." />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin10"
+            android:fontFamily="@font/roboto_black"
+            android:text="@{@string/format_price_won(item.price)}"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size12"
+            app:layout_constraintBottom_toBottomOf="@id/iv_thumbnail"
+            app:layout_constraintStart_toStartOf="@id/tv_title"
+            tools:text="책 가격" />
+
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin20"
+            android:fontFamily="@font/roboto_black"
+            android:includeFontPadding="false"
+            android:text=""
+            android:textSize="@dimen/text_size12"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_price"
+            app:layout_constraintEnd_toEndOf="@id/tv_content"
+            app:layout_constraintTop_toTopOf="@+id/tv_price"
+            app:layout_goneMarginEnd="@dimen/margin22"
+            tools:text="2021-03-14" />
+
+
+        <CheckBox
+            android:id="@+id/btn_favorite"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="@dimen/margin20"
+            android:button="@drawable/selector_favorite"
+            android:checked="@={item.favorite}"
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

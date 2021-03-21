@@ -1,0 +1,58 @@
+apply plugin: 'com.android.library'
+
+apply from: '../build-common.gradle'
+
+apply from : '../build-config.gradle'
+
+apply plugin: 'kotlin-parcelize'
+
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+
+
+android {
+    buildFeatures {
+        dataBinding = true
+    }
+}
+
+dependencies {
+    implementation project("$layers.domain")
+    implementation project("$layers.coreMvvm")
+    // android
+    implementation "$libDependencies.appcompat"
+    implementation "$libDependencies.ktx"
+    implementation "$libDependencies.constraint"
+    implementation "$libDependencies.material"
+    implementation "$libDependencies.fragmentKtx"
+    implementation "$libDependencies.legacySupport"
+    // hilt
+    implementation "$libDependencies.hiltViewmodel"
+    // lifecycle
+    implementation "$libDependencies.lifecycleExtension"
+    implementation "$libDependencies.lifecycleLivedata"
+    implementation "$libDependencies.lifecycleViewmodel"
+    implementation "$libDependencies.lifecycleViewmodelState"
+    // navigation
+    implementation "$libDependencies.navigationFragment"
+    implementation "$libDependencies.navigationUi"
+    // coroutines
+    implementation "$libDependencies.coroutinesCore"
+    implementation "$libDependencies.coroutinesAndroid"
+    // rx
+    implementation "$libDependencies.rxjava"
+    implementation "$libDependencies.rxkotlin"
+    implementation "$libDependencies.rxandroid"
+    implementation "$libDependencies.rxbinding"
+    // gilde
+    implementation "$libDependencies.glide"
+    implementation "$libDependencies.glidePalette"
+    kapt "$libDependencies.glideCompiler"
+    // navigation
+    implementation "$libDependencies.navigationUi"
+    implementation "$libDependencies.navigationFragment"
+    // paging
+    implementation "$libDependencies.pagingruntime"
+    implementation "$libDependencies.rxpagingktx"
+    // recyclerView
+    implementation 'com.dino.library:simplerecyclerview:0.7.1'
+}

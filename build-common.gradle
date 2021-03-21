@@ -1,0 +1,47 @@
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply from: '../build-config.gradle'
+apply from: '../build-project-version.gradle'
+apply from: '../build-source-set.gradle'
+apply from: '../build-compatibility.gradle'
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+    compileSdkVersion configs.compileSdk
+    buildToolsVersion configs.buildSdk
+
+    defaultConfig {
+        minSdkVersion configs.minSdk
+        targetSdkVersion configs.targetSdk
+
+        versionCode configs.versionCode
+        versionName configs.versionName
+
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+    }
+
+    dexOptions{
+        javaMaxHeapSize "4g"
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
+    }
+}
+
+dependencies {
+    implementation "$libDependencies.stdKotlin"
+    implementation "$libDependencies.timber"
+    // hilt
+    implementation "$libDependencies.hiltAndroid"
+    kapt "$libDependencies.hiltAndroidCompiler"
+    implementation "$libDependencies.hiltCommon"
+    kapt "$libDependencies.hiltCompiler"
+    implementation 'com.android.support:multidex:1.0.0'
+}

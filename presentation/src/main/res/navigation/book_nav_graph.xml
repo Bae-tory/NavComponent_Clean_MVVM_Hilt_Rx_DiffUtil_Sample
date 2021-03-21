@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/book_list_fragment">
+
+    <!--  BookListFragment  -->
+    <fragment
+        android:id="@+id/book_list_fragment"
+        android:name="com.baetory.presentation.ui.book.view.BookListFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_book_list">
+
+        <action
+            android:id="@+id/action_list_to_detail"
+            app:destination="@id/book_list_detail_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <!--  BookListDetailFragment  -->
+    <fragment
+        android:id="@+id/book_list_detail_fragment"
+        android:name="com.baetory.presentation.ui.book.view.BookListDetailFragment"
+        android:label="fragment_choose_recipient"
+        tools:layout="@layout/fragment_book_list_detail">
+
+        <argument
+            android:name="isFavoriteChecked"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <argument
+            android:name="position"
+            android:defaultValue="-1"
+            app:argType="integer" />
+
+        <argument
+            android:name="item"
+            app:argType="com.baetory.presentation.model.BooksViewState"
+            app:nullable="true" />
+    </fragment>
+
+</navigation>

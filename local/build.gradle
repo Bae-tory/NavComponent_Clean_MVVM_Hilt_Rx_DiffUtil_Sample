@@ -1,0 +1,32 @@
+apply plugin: 'com.android.library'
+
+apply from: '../build-common.gradle'
+
+apply from : '../build-config.gradle'
+
+dependencies {
+    implementation project("$layers.data")
+    // room
+    implementation "$libDependencies.roomRuntime"
+    implementation "$libDependencies.roomKtx"
+    implementation "$libDependencies.roomRxjava"
+    kapt "$libDependencies.roomCompiler"
+    // coroutines
+    implementation "$libDependencies.coroutinesCore"
+    implementation "$libDependencies.coroutinesAndroid"
+    // moshi
+    implementation "$libDependencies.moshi"
+    kapt "$libDependencies.moshiCodeGen"
+    // rx
+    implementation "$libDependencies.rxjava"
+    implementation "$libDependencies.rxkotlin"
+    implementation "$libDependencies.rxandroid"
+
+    // test
+    testImplementation 'androidx.arch.core:core-testing:2.0.0'
+    testImplementation 'androidx.test:core:1.3.0'
+    testImplementation "org.jetbrains.kotlin:kotlin-test:$versions.kotlin"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
+    testImplementation 'org.mockito:mockito-core:3.3.3'
+    testImplementation 'org.robolectric:robolectric:4.3.1'
+}

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.baetory.presentation.model.BooksViewState" />
+
+        <import type="com.baetory.presentation.ui.book.viewmodel.BookListFragmentViewModel.PagingActionType" />
+
+        <variable
+            name="vm"
+            type="com.baetory.presentation.ui.book.viewmodel.BookListFragmentViewModel" />
+
+        <variable
+            name="query"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_search"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_edittext"
+            android:fontFamily="@font/roboto_black"
+            android:gravity="left|center_vertical"
+            android:hint="@string/please_input"
+            android:includeFontPadding="false"
+            android:inputType="text"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:paddingHorizontal="@dimen/margin30"
+            android:text="@={query}"
+            android:textSize="@dimen/text_size20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/btn_clear"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="@dimen/margin10"
+            android:background="@drawable/ic_baseline_clear_24"
+            app:layout_constraintBottom_toBottomOf="@id/et_search"
+            app:layout_constraintEnd_toEndOf="@id/et_search"
+            app:layout_constraintTop_toTopOf="@id/et_search" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_book_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_search"
+            app:spanCount="1"
+            bind:dino_diffCallback="@{(Object)BooksViewState.Companion}"
+            bind:dino_eventHolder="@{vm}"
+            bind:dino_itemLayout="@{@layout/rv_item_book}"
+            bind:dino_itemSpace="@{@dimen/margin10}"
+            bind:dino_items="@{vm.books}"
+            bind:dino_onLoad="@{() -> vm.showMoreBooks(query,PagingActionType.LoadMore)}"
+            bind:dino_threshold="@{5}"
+            bind:dino_vm="@{vm}"
+            tools:itemCount="10"
+            tools:listitem="@layout/rv_item_book" />
+
+        <include
+            android:id="@+id/loading_footer"
+            layout="@layout/loading_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible" />
+
+        <include
+            android:id="@+id/loading_full_screen"
+            layout="@layout/loading_full_screen"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:progressVisible="@{true}"
+            tools:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

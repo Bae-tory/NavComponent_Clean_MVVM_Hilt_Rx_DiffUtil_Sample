@@ -1,0 +1,34 @@
+apply plugin: 'com.android.library'
+
+apply from: '../build-common.gradle'
+
+apply from : '../build-config.gradle'
+
+dependencies {
+    implementation project("$layers.domain")
+    // android
+    implementation "$libDependencies.fragmentKtx"
+    implementation "$libDependencies.legacySupport"
+    // lifecycle
+    implementation "$libDependencies.lifecycleExtension"
+    implementation "$libDependencies.lifecycleLivedata"
+    implementation "$libDependencies.lifecycleViewmodel"
+    implementation "$libDependencies.lifecycleViewmodelState"
+    // coroutines
+    implementation "$libDependencies.coroutinesCore"
+    implementation "$libDependencies.coroutinesAndroid"
+    // rx
+    implementation "$libDependencies.rxjava"
+    implementation "$libDependencies.rxkotlin"
+    implementation "$libDependencies.rxandroid"
+    implementation "$libDependencies.rxbinding"
+    // startup
+    implementation "$libDependencies.startup"
+    // room
+    implementation "$libDependencies.roomRuntime"
+    implementation "$libDependencies.roomKtx"
+    implementation "$libDependencies.roomRxjava"
+    kapt "$libDependencies.roomCompiler"
+    api "$libDependencies.retrofit"
+    kapt "$libDependencies.roomCompiler"
+}

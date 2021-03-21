@@ -1,0 +1,61 @@
+apply plugin: 'com.android.library'
+
+apply from: '../build-common.gradle'
+
+apply from: '../build-config.gradle'
+
+android {
+    defaultConfig {
+        buildConfigField("String", "KAKAO_SEARCH_API_KEY", getApiKey("KAKAO_SEARCH_API_KEY"))
+        buildConfigField("String", "KAKAO_BASE_URL", getBaseUrl("KAKAO_BASE_URL"))
+    }
+}
+
+dependencies {
+    implementation project("$layers.data")
+    //room
+    implementation "$libDependencies.roomRuntime"
+    implementation "$libDependencies.roomKtx"
+    kapt "$libDependencies.roomCompiler"
+    testImplementation "$libDependencies.archCoreTest"
+    // coroutines
+    implementation "$libDependencies.coroutinesCore"
+    implementation "$libDependencies.coroutinesAndroid"
+    // rx
+    implementation "$libDependencies.rxjava"
+    implementation "$libDependencies.rxkotlin"
+    implementation "$libDependencies.rxandroid"
+    // moshi
+    implementation "$libDependencies.moshi"
+    implementation "$libDependencies.retrofitMoshiConverter"
+    kapt "$libDependencies.moshiCodeGen"
+    // retrofit rx
+    api "$libDependencies.retrofit"
+    api "$libDependencies.okhttp"
+    api "$libDependencies.okhttp3logging"
+    implementation "$libDependencies.rxjavaAdapter"
+}
+
+String getBaseUrl(String name) {
+    try {
+        def properties = new Properties()
+        properties.load(new FileInputStream(rootProject.file("./local.properties")))
+        def baseUrl = properties.getProperty(name)
+        if (baseUrl != null) baseUrl else "\"https://dapi.kakao.com/\""
+    } catch (FileNotFoundException e) {
+        e.printStackTrace()
+        "\"https://dapi.kakao.com/\""
+    }
+}
+
+String getApiKey(String name) {
+    try {
+        def properties = new Properties()
+        properties.load(new FileInputStream(rootProject.file("./local.properties")))
+        def apiKey = properties.getProperty(name)
+        if (apiKey != null) apiKey else "\"e726e1e4f28a5398e52219e330719286\""
+    } catch (FileNotFoundException e) {
+        e.printStackTrace()
+        "\"e726e1e4f28a5398e52219e330719286\""
+    }
+}
