@@ -6,7 +6,7 @@ import java.util.*
 
 object MockLocalData {
 
-    val bookRoomObject1 = BookRoomObject(
+    val bookRoomObject = BookRoomObject(
         id = 1,
         authors = listOf("작가1", "작가2"),
         translators = listOf("번역가1", "번역가2"),
@@ -18,7 +18,7 @@ object MockLocalData {
         publisher = "출판사",
         salePrice = "100",
         saleStatus = "판매중",
-        bookImageUrl = "imageUrl1",
+        thumbnailImageUrl = "imageUrl1",
         title = "제목",
         bookDetailUrl = "detailImageUrl"
     )
@@ -38,6 +38,6 @@ object MockLocalData {
         title = "제목",
         bookDetailUrl = "detailImageUrl"
     )
-    val bookRoomObjects = listOf(bookRoomObject1, bookRoomObject1)
+    val bookRoomObjects = listOf(bookRoomObject, bookRoomObject.copy(id = 2))
     val bookDataModels = listOf(bookDataModel, bookDataModel)
 }
