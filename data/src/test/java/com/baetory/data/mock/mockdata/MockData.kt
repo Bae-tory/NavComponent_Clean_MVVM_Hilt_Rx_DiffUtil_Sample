@@ -1,8 +1,7 @@
-package com.baetory.data.mock
+package com.baetory.data.mock.mockdata
 
 import com.baetory.data.model.BookDataModel
 import com.baetory.data.model.BookPagingKeyDataModel
-import com.baetory.data.model.BookPagingMetaDataModel
 import com.baetory.data.model.BookSearchDataModel
 import com.baetory.domain.entity.book.BookEntity
 import com.baetory.domain.entity.book.BookInfo
