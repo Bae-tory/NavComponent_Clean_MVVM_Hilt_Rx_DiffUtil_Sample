@@ -31,4 +31,17 @@ class DeleteCashedBooksUseCaseTest : UseCaseTest() {
 
         deleteCachedBooksUseCase.execute().test().assertComplete()
     }
+
+    @Test
+    fun `Delete 후 complete 에러 캐치 여부 테스트`() {
+        val dropFailException = Exception("database drop failed")
+        Mockito.`when`(
+            bookRepository.dropBooks()
+        )
+            .thenReturn(Completable.error(dropFailException))
+
+        deleteCachedBooksUseCase.execute()
+            .test()
+            .assertError(dropFailException)
+    }
 }
